@@ -1,0 +1,28 @@
+{
+  "name": "secrets-service",
+  "version": "1.0.0",
+  "description": "manage encrypted secrets",
+  "keywords": [
+    "express",
+    "mongoose",
+    "es6"
+  ],
+  "engines": {
+    "npm": ">=5",
+    "node": ">=10.5"
+  },
+  "scripts": {
+    "start": "node --use_strict index.js"
+  },
+  "author": "David Meir-Levy",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^4.10.4",
+    "morgan": "^1.9.0"
+  }
+}
