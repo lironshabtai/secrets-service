@@ -1,16 +1,14 @@
-# Authentication service
+# Secrets service
 
-A HTTP server (back end only) with DB support & auth features 
+A HTTP server to manage internal application secrets 
 
 ## Main Features
 - es6
 - express
 - mongoose
-- passport
-- validator
-- signin / signup
-- token and refresh-tokens
-- optional roles by environment variables
+- sha.js
+- jsonwebtokens
+
 
 ## Dependencies
 - Node.js
@@ -26,8 +24,3 @@ $ npm install
 ```sh
 $ npm start
 ```
-
-
-## Future development
-- email verification
-- reset password

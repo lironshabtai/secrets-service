@@ -22,5 +22,5 @@ app.set('ip', (process.env.IP || '127.0.0.1'))
 
 // start the server
 app.listen(app.get('port'), app.get('ip'), () => {
-  console.log(`Assets Server is running on port ${app.get('port')}`)
+  console.log(`Secrets Server is running on port ${app.get('port')}`)
 })

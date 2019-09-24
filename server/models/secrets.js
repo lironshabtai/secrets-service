@@ -1,22 +1,27 @@
 const mongoose = require('mongoose')
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken')
+const { sha256 } = require('sha.js')
 const { jwtSecret } = require('../../config')
 
 // define the Secret model schema
 const SecretSchema = new mongoose.Schema({
-  key: String,
+  key: {
+    type: String,
+    required: true,
+    unique: true
+  },
   value: String,
 })
 
 SecretSchema.methods.encrypt = function encrypt (key, value, userToken) {
-  this.key = jwt.sign({ key }, jwtSecret)
+  this.key = hashSecretKey(key)
   this.value = jwt.sign({ key, value, userToken }, jwtSecret + key + userToken)
 
   return this.save()
 }
 
 SecretSchema.statics.findAndDecrypt = function decrypt (key, userToken) {
-  return this.findOne({ key: jwt.sign({ key }, jwtSecret) })
+  return this.findOne({ key: hashSecretKey(key) })
     .lean()
     .then(secret => verify(secret.value, jwtSecret + key + userToken))
     .then(decoded => {
@@ -40,6 +45,10 @@ function verify (key, secret) {
       }
     })
   })
+}
+
+function hashSecretKey (text) {
+  return new sha256().update(text + jwtSecret).digest('hex')
 }
 
 module.exports = mongoose.model('Secret', SecretSchema)
