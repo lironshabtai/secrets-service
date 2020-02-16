@@ -18,7 +18,7 @@ app.use(bodyParser.json())
 routes(app)
 
 app.set('port', (process.env.PORT || 9002))
-app.set('ip', (process.env.IP || '127.0.0.1'))
+app.set('ip', (process.env.IP || '0.0.0.0'))
 
 // start the server
 app.listen(app.get('port'), app.get('ip'), () => {
